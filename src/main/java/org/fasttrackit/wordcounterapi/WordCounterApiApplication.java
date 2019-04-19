@@ -11,5 +11,4 @@ public class WordCounterApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WordCounterApiApplication.class, args);
 	}
-
 }
