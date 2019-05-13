@@ -36,7 +36,7 @@ public class LetterServiceIntegrationTests {
 
     private Letter createLetter() {
         CreateLetterRequest request = new CreateLetterRequest();
-        request.setLetter("abcd");
+        request.setLetter("abcdef");
 
         return letterService.createLetter(request);
     }
