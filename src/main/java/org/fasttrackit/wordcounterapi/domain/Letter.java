@@ -5,37 +5,37 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Character {
+public class Letter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @NotNull
     @Size(min = 1)
-    private String character;
+    private String letter;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getCharacter() {
-        return character;
+    public String getLetter() {
+        return letter;
     }
 
-    public void setCharacter(String character) {
-        this.character = character;
+    public void setLetter(String letter) {
+        this.letter = letter;
     }
 
     @Override
     public String toString() {
-        return "Character{" +
+        return "Letter{" +
                 "id=" + id +
-                ", character='" + character + '\'' +
+                ", letter='" + letter + '\'' +
                 '}';
     }
 }

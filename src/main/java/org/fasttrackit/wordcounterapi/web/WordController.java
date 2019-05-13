@@ -23,24 +23,28 @@ public class WordController {
         this.wordService = wordService;
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity <Word> getWord(@PathVariable("id") long id) throws ResourceNotFoundException {
         Word response = wordService.getWord(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity <Word> createWord(@RequestBody @Valid CreateWordRequest request){
         Word response = wordService.createWord(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity updateWord(@PathVariable("id") long id, @RequestBody @Valid UpdateWordRequest request) throws ResourceNotFoundException {
         wordService.updateWord(id, request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deleteWord(@PathVariable("id") long id){
         wordService.deleteWord(id);
