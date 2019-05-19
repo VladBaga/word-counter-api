@@ -1,4 +1,4 @@
-package org.fasttrackit.wordcounterapi.Configuration;
+package org.fasttrackit.wordcounterapi.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

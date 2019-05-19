@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 public class Word {
@@ -40,5 +41,19 @@ public class Word {
                 "id=" + id +
                 ", word='" + word + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Word word1 = (Word) o;
+        return id == word1.id &&
+                Objects.equals(word, word1.word);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, word);
     }
 }
