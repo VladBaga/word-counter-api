@@ -17,8 +17,8 @@ public class Letter {
     @Size(min = 1)
     private String letter;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Word word = new Word();
+    @ManyToMany(mappedBy = "letters")
+    private Set<Word> words = new HashSet<>();
 
     public long getId() {
         return id;
@@ -36,12 +36,12 @@ public class Letter {
         this.letter = letter;
     }
 
-    public Word getWord() {
-        return word;
+    public Set<Word> getWords() {
+        return words;
     }
 
-    public void setWord(Word word) {
-        this.word = word;
+    public void setWords(Set<Word> words) {
+        this.words = words;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Letter {
         return "Letter{" +
                 "id=" + id +
                 ", letter='" + letter + '\'' +
-                ", word=" + word +
+                ", words=" + words +
                 '}';
     }
 }
