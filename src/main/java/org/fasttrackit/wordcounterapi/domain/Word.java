@@ -1,9 +1,15 @@
 package org.fasttrackit.wordcounterapi.domain;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.DefaultConversionService;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,6 +19,9 @@ public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
+    private Integer numberOfWords;
 
     @NotNull
     @Size(min = 1)
@@ -25,6 +34,11 @@ public class Word {
             inverseJoinColumns = @JoinColumn(name = "letter_id")
     )
     private Set<Letter> letters = new HashSet<>();
+
+    @Bean
+    public ConversionService conversionService() {
+        return new DefaultConversionService();
+    }
 
     public void addLetter(Letter letter) {
         letters.add(letter);
@@ -53,6 +67,14 @@ public class Word {
         this.word = word;
     }
 
+    public Integer getNumberOfWords() {
+        return numberOfWords;
+    }
+
+    public void setNumberOfWords(Integer numberOfWords) {
+        this.numberOfWords = numberOfWords;
+    }
+
     public Set<Letter> getLetters() {
         return letters;
     }
@@ -68,11 +90,12 @@ public class Word {
         Word word1 = (Word) o;
         return id == word1.id &&
                 Objects.equals(word, word1.word) &&
+                Objects.equals(numberOfWords, word1.numberOfWords) &&
                 Objects.equals(letters, word1.letters);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, word, letters);
+        return Objects.hash(id, word, numberOfWords, letters);
     }
 }

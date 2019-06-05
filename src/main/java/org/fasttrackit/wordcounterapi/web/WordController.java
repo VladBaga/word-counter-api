@@ -1,9 +1,11 @@
 package org.fasttrackit.wordcounterapi.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.fasttrackit.wordcounterapi.domain.Word;
 import org.fasttrackit.wordcounterapi.exception.ResourceNotFoundException;
 import org.fasttrackit.wordcounterapi.service.WordService;
 import org.fasttrackit.wordcounterapi.transfer.word.CreateWordRequest;
+import org.fasttrackit.wordcounterapi.transfer.word.GetWordRequest;
 import org.fasttrackit.wordcounterapi.transfer.word.UpdateWordRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +26,10 @@ public class WordController {
         this.wordService = wordService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Word> getWord(@PathVariable("id") long id) throws ResourceNotFoundException {
-        Word response = wordService.getWord(id);
+    @GetMapping(path = "/{id}")
+    @CrossOrigin
+    public ResponseEntity<Word> getWords(@PathVariable("id") long id) throws ResourceNotFoundException {
+        Word response = wordService.getWords(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -48,9 +51,9 @@ public class WordController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/word")
-    public ResponseEntity<String> getWordCount(@RequestParam("wordCount") int wordCount) {
-
-        return new ResponseEntity<>("Words :" + wordCount, HttpStatus.OK);
+    @GetMapping
+    public ResponseEntity<Word> getWordCount( @Valid GetWordRequest request, @PathVariable long id) throws ResourceNotFoundException, JsonProcessingException {
+        Word response = wordService.getWordCount(request, id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

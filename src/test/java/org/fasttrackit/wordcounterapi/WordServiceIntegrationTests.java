@@ -40,7 +40,7 @@ public class WordServiceIntegrationTests {
 
     @Test(expected = ResourceNotFoundException.class)
     public void testGetWord_whenWordNotFound_thenThrowResourceNotFoundException() throws ResourceNotFoundException {
-        wordService.getWord(0);
+        wordService.getWords(0);
     }
 
     @Test
@@ -65,6 +65,6 @@ public class WordServiceIntegrationTests {
 
         wordService.deleteWord(createdWord.getId());
 
-        wordService.getWord(createdWord.getId());
+        wordService.getWords(createdWord.getId());
     }
 }

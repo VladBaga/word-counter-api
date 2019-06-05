@@ -7,6 +7,9 @@ public class UpdateWordRequest {
     @NotBlank
     private String word;
 
+
+    private Integer numberOfWords;
+
     public String getWord() {
         return word;
     }
@@ -15,10 +18,19 @@ public class UpdateWordRequest {
         this.word = word;
     }
 
+    public Integer getNumberOfWords() {
+        return numberOfWords;
+    }
+
+    public void setNumberOfWords(Integer numberOfWords) {
+        this.numberOfWords = numberOfWords;
+    }
+
     @Override
     public String toString() {
-        return "CreateWordRequest{" +
+        return "UpdateWordRequest{" +
                 "word='" + word + '\'' +
+                ", numberOfWords=" + numberOfWords +
                 '}';
     }
 }
