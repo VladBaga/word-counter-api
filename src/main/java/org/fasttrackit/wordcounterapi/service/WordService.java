@@ -59,7 +59,7 @@ public class WordService {
     }
 
      public Word getWordCount(GetWordRequest request, long id) {
-        LOGGER.info("Retrieving word {}", id);
+        LOGGER.info("Retrieving word {} ", id);
         Word numberOfWords = objectMapper.convertValue(request, Word.class);
         String count = objectMapper.convertValue(numberOfWords, String.class);
         int wordNumber = new StringTokenizer(count).countTokens();
